@@ -1,14 +1,22 @@
-var children = Array.from(WF.currentItem().getChildren());
-children.forEach(child=>console.log(child.getNameInPlainText()));
+var searchAnyText = '[a-z]*';
 
-/*
-const foundParagraph = Array.from(nodes).find((node) => node === testingCondition);
+function getArrayAllWordsTwoLettersSame() {
+    var wordsTwoLettersSame = [];
+    return Array.from(WF.currentItem().getChildren())
+    .forEach(child=>wordsTwoLettersSame.push(child.getNameInPlainText()));
+}
 
-testing condition example:
+function buildRegex(searchCharacter) {
+    var regexString = searchAnyText + searchCharacter + searchAnyText;
+    return new RegExp(regexString);
+}
 
-var found = array.find(function (element) {
-        return element > 20;
-});
-*/
+/* this is where I'm stuck: actually applying the regex filter to the list of words*/
+// function filterWordList(list, regex) {
+//     var lis = new Array();
+//     list.filter(regex.test)
+// }
 
-//regex 
+// wordsTwoLettersSame.forEach(
+//     word=>console.log(searchPattern.exec(word))
+//     );
