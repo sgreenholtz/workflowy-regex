@@ -20,3 +20,9 @@ function buildRegex(searchCharacter) {
 // wordsTwoLettersSame.forEach(
 //     word=>console.log(searchPattern.exec(word))
 //     );
+
+children.forEach(child => {
+    var twoletters = Array.from(child.getChildren());
+    Array.from(twoletters.getChildren()).forEach(word => words.push(word));
+})
+
