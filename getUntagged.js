@@ -1,24 +1,25 @@
-var words = [];
-var twoLetters = [];
+/* Returns a map of [word name, word object] */
+function getAllWordsAsMap() {
+    var letters = Array.from(WF.currentItem().getChildren()).splice(4);
+    
+    var twoLetters = [];
+    letters.forEach(letter=>twoLetters.push(...letter.getChildren()));
+    
+    var wordObjects = [];
+    twoLetters.forEach(twoLetters=>wordObjects.push(...twoLetters.getChildren()));
+    
+    var wordMap = new Map()
+    wordObjects.forEach(wordObject=> wordMap.set(wordItem,wordItem.getNameInPlainText().trim(), wordObject));
+    
+    return wordMap;
+}
+
 var untagged = new Map();
-
-var letters = Array.from(WF.currentItem().getChildren()).splice(4);
-letters.forEach(letter=>twoLetters.push(...letter.getChildren()));
-twoLetters.forEach(twoLetters=>words.push(...twoLetters.getChildren()));
-
-words.forEach(wordItem => {
+getAllWordsAsMap().values().forEach(wordItem => {
     if (WF.getItemNameTags(wordItem).length === 0){ 
         untagged.set(wordItem,wordItem.getNameInPlainText().trim().length);
     }
-});
-
-// untagged.forEach((wordItem,len)=>{
-//     if (len===4) {
-//         wordItem.
-//     }
-// });
-
-// untagged.forEach((k,v)=>{if (v===4) {WF.setItemName(k)
+}); // !! ALERT!! untested code !!//
 
 /* how does WF.setItemName() work? How about WF.editGroup()?
 I tried this code
@@ -29,9 +30,3 @@ untagged.forEach((l,w)=>{
 
 Nothing happened
 */
-
-untagged.forEach((l,w)=>{
-    if(l===4){
-        console.log(w.getNameInPlainText());
-    }
-});
